@@ -1,6 +1,6 @@
 [app]
 log_level = "debug"
-metrics_server_addr = ":7081"
+metrics_server_addr = "127.0.0.1:7081"
 
 
 # Map of topics from the source to sync to the target.

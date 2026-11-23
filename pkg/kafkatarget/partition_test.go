@@ -27,7 +27,8 @@ func TestWritePartition(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			target := &Target{inletCh: make(chan *kgo.Record, 1)}
+			target := &Target{inletCh: make(chan *kgo.Record, 1), startedCh: make(chan struct{})}
+			close(target.startedCh)
 			if err := target.Write(context.Background(), relay.Message{
 				Topic: "target", Partition: c.partition, SourcePartition: c.sourcePartition,
 			}); err != nil {
